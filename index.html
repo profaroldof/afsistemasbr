@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Funções de Cálculo Automatizado</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Documentação -->
+    <!-- Sistema para cálculo automatizado de carga horária de professores -->
+    <!-- Desenvolvido por: Aroldo M. F. Chaves - 2024 -->
+    <!-- Licença: MIT License -->
+  </head>
+  <body>
+    <h1>Funções de Cálculo Automatizado</h1>
+    <form>
+      <div class="row g-3">
+        <div class="col-md-3">
+          <label for="ch_aula" class="form-label">CH Aula em Sala</label>
+          <select id="ch_aula" class="form-select">
+            <option value="0"></option>
+            <option value="13">13</option>
+            <option value="20">20</option>
+            <option value="27">27</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="ch_h_atividade" class="form-label">CH H. Atividade</label>
+          <select id="ch_h_atividade" class="form-select">
+            <option value="0"></option>
+            <option value="7">7</option>
+            <option value="10">10</option>
+            <option value="13">13</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="ch_aula_total" class="form-label">CH Total</label>
+          <select id="ch_aula_total" class="form-select">
+            <option value="0"></option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-3">
+          <label for="ch_exc_aula" class="form-label">CH Aula Excedente</label>
+          <select id="ch_exc_aula" class="form-select">
+            <option value="0"></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="ch_exc_h_atividade" class="form-label">CH Exc. H. Atividade</label>
+          <input  id="ch_exc_h_atividade" type="number" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label for="ch_exc_total" class="form-label">CH Exc. Total</label>
+          <select id="ch_exc_total" class="form-select">
+            <option value="0"></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="31">31</option>
+            <option value="32">32</option>
+            <option value="33">33</option>
+            <option value="35">35</option>
+            <option value="36">36</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-3">
+          <label for="ch_total_aula" class="form-label">CH Total Sala de Aula</label>
+          <input  id="ch_total_aula" type="number" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label for="ch_total_h_atividade" class="form-label">CH Total H. Atividade</label>
+          <input  id="ch_total_h_atividade" type="number" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label for="ch_total" class="form-label">CH Total</label>
+          <input  id="ch_total" type="number" class="form-control">
+        </div>
+      </div>
+
+
+    </form>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Elementos DOM
+        const chAulaInput = document.getElementById("ch_aula");
+        const chHAtividadeInput = document.getElementById("ch_h_atividade");
+        const chAulaTotalInput = document.getElementById("ch_aula_total");
+
+        const chExcAulaInput = document.getElementById("ch_exc_aula");
+        const chExcHAtividadeInput = document.getElementById("ch_exc_h_atividade");
+        const chExcTotalInput = document.getElementById("ch_exc_total");
+
+        const chTotalAulaInput = document.getElementById("ch_total_aula");
+        const chTotalHAtividadeInput = document.getElementById("ch_total_h_atividade");
+        const chTotalInput = document.getElementById("ch_total");
+
+        // Arrays de parâmetros de cálculos
+        // Atribuir valores conforme Instrução Normativa emitida pela Secretaria Municipal de Educação
+        const chAulaTable = [
+            { ch: 20, h_aula: 13, h_ativ: 7 },
+            { ch: 30, h_aula: 20, h_ativ: 10 },
+            { ch: 40, h_aula: 27, h_ativ: 13 }
+        ];
+
+        const hExcTable = [
+            { exc_h_aula:  1, exc_h_ativ: 0, exc_total:  1 },
+            { exc_h_aula:  2, exc_h_ativ: 0, exc_total:  2 },
+            { exc_h_aula:  3, exc_h_ativ: 1, exc_total:  4 },
+            { exc_h_aula:  4, exc_h_ativ: 1, exc_total:  5 },
+            { exc_h_aula:  5, exc_h_ativ: 2, exc_total:  7 },
+            { exc_h_aula:  6, exc_h_ativ: 2, exc_total:  8 },
+            { exc_h_aula:  7, exc_h_ativ: 2, exc_total:  9 },
+            { exc_h_aula:  8, exc_h_ativ: 3, exc_total: 11 },
+            { exc_h_aula:  9, exc_h_ativ: 3, exc_total: 12 },
+            { exc_h_aula: 10, exc_h_ativ: 3, exc_total: 13 },
+            { exc_h_aula: 11, exc_h_ativ: 3, exc_total: 14 },
+            { exc_h_aula: 12, exc_h_ativ: 4, exc_total: 16 },
+            { exc_h_aula: 13, exc_h_ativ: 4, exc_total: 17 },
+            { exc_h_aula: 14, exc_h_ativ: 5, exc_total: 19 },
+            { exc_h_aula: 15, exc_h_ativ: 5, exc_total: 20 },
+            { exc_h_aula: 16, exc_h_ativ: 5, exc_total: 21 },
+            { exc_h_aula: 17, exc_h_ativ: 6, exc_total: 23 },
+            { exc_h_aula: 18, exc_h_ativ: 6, exc_total: 24 },
+            { exc_h_aula: 19, exc_h_ativ: 6, exc_total: 25 },
+            { exc_h_aula: 20, exc_h_ativ: 7, exc_total: 27 },
+            { exc_h_aula: 21, exc_h_ativ: 7, exc_total: 28 },
+            { exc_h_aula: 22, exc_h_ativ: 7, exc_total: 29 },
+            { exc_h_aula: 23, exc_h_ativ: 8, exc_total: 31 },
+            { exc_h_aula: 24, exc_h_ativ: 8, exc_total: 32 },
+            { exc_h_aula: 25, exc_h_ativ: 8, exc_total: 33 },
+            { exc_h_aula: 26, exc_h_ativ: 9, exc_total: 35 },
+            { exc_h_aula: 27, exc_h_ativ: 9, exc_total: 36 }
+        ];
+
+        // Calcular inputs de Carga Horária Normal
+        // Ao alterar CH Aula em Sala
+        chAulaInput.addEventListener("change", function() {
+          const aulaCH = parseInt(chAulaInput.value) || 0;
+          const hAulaAtiv = (chAulaTable.find(row => row.h_aula == aulaCH) || { h_ativ: 0 }).h_ativ;
+
+          chHAtividadeInput.value = hAulaAtiv;
+          chAulaTotalInput.value = aulaCH + hAulaAtiv;
+
+          const chExcAula = parseInt(chExcAulaInput.value) || 0;
+          const chExcHAtividade = parseInt(chExcHAtividadeInput.value) || 0;
+
+          chTotalAulaInput.value = aulaCH + chExcAula;
+          chTotalHAtividadeInput.value = hAulaAtiv + chExcHAtividade;
+          chTotalInput.value = parseInt(chTotalAulaInput.value) + parseInt(chTotalHAtividadeInput.value);
+
+        });
+
+        // Ao alterar CH H. Atividade
+        chHAtividadeInput.addEventListener("change", function() {
+          const hAulaAtiv = parseInt(chHAtividadeInput.value) || 0;
+          const aulaCH = (chAulaTable.find(row => row.h_ativ == hAulaAtiv) || { h_aula: 0 }).h_aula;
+          
+          chAulaInput.value = aulaCH;
+          chAulaTotalInput.value = aulaCH + hAulaAtiv;
+
+          const chExcAula = parseInt(chExcAulaInput.value) || 0;
+          const chExcHAtividade = parseInt(chExcHAtividadeInput.value) || 0;
+
+          chTotalAulaInput.value = aulaCH + chExcAula;
+          chTotalHAtividadeInput.value = hAulaAtiv + chExcHAtividade;
+          chTotalInput.value = parseInt(chTotalAulaInput.value) + parseInt(chTotalHAtividadeInput.value);
+        });
+
+        // Ao alterar CH Total
+        chAulaTotalInput.addEventListener("change", function() {
+          const hAulaTotal = parseInt(chAulaTotalInput.value) || 0;
+          const aulaCH = (chAulaTable.find(row => row.ch == hAulaTotal) || { h_aula: 0 }).h_aula;
+          const hAulaAtiv = (chAulaTable.find(row => row.ch == hAulaTotal) || { h_ativ: 0 }).h_ativ;
+          
+          chAulaInput.value = aulaCH;
+          chHAtividadeInput.value = hAulaAtiv;
+
+          const chExcAula = parseInt(chExcAulaInput.value) || 0;
+          const chExcHAtividade = parseInt(chExcHAtividadeInput.value) || 0;
+
+          chTotalAulaInput.value = aulaCH + chExcAula;
+          chTotalHAtividadeInput.value = hAulaAtiv + chExcHAtividade;
+          chTotalInput.value = parseInt(chTotalAulaInput.value) + parseInt(chTotalHAtividadeInput.value);
+        });
+
+        // Calcular inputs de Carga Horária Normal
+        // Ao alterar CH Aula Excedente
+        chExcAulaInput.addEventListener("change", function() {
+          const aulaCHExc = parseInt(chExcAulaInput.value) || 0;
+          const hAulaAtivExc = (hExcTable.find(row => row.exc_h_aula == aulaCHExc) || { exc_h_ativ: 0 }).exc_h_ativ;
+
+          chExcHAtividadeInput.value = hAulaAtivExc;
+          chExcTotalInput.value = aulaCHExc + hAulaAtivExc;
+
+          const chAula = parseInt(chAulaInput.value) || 0;
+          const chHAtividade = parseInt(chHAtividadeInput.value) || 0;
+
+          chTotalAulaInput.value = aulaCHExc + chAula;
+          chTotalHAtividadeInput.value = hAulaAtivExc + chHAtividade;
+          chTotalInput.value = parseInt(chTotalAulaInput.value) + parseInt(chTotalHAtividadeInput.value);
+        });
+
+        // Ao alterar CH Exc. Total
+        chExcTotalInput.addEventListener("change", function() {
+          const hAulaTotalExc = parseInt(chExcTotalInput.value) || 0;
+          const aulaCHExc = (hExcTable.find(row => row.exc_total == hAulaTotalExc) || { exc_h_aula: 0 }).exc_h_aula;
+          const hAulaAtivExc = (hExcTable.find(row => row.exc_total == hAulaTotalExc) || { exc_h_ativ: 0 }).exc_h_ativ;
+
+          chExcAulaInput.value = aulaCHExc;
+          chExcHAtividadeInput.value = hAulaAtivExc;
+
+          const chAula = parseInt(chAulaInput.value) || 0;
+          const chHAtividade = parseInt(chHAtividadeInput.value) || 0;
+
+          chTotalAulaInput.value = aulaCHExc + chAula;
+          chTotalHAtividadeInput.value = hAulaAtivExc + chHAtividade;
+          chTotalInput.value = parseInt(chTotalAulaInput.value) + parseInt(chTotalHAtividadeInput.value);
+        });
+
+
+        // Inputs que não podem ser alterados, apenas calculados
+        [ch_exc_h_atividade, chTotalAulaInput, chTotalHAtividadeInput, chTotalInput].forEach(field => {
+            field.setAttribute("readonly", true);
+        });
+      });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
